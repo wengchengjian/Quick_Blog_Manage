@@ -3,6 +3,10 @@ import { createWebHistory, createRouter, RouteRecordRaw } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
+    path: "/",
+    redirect: () => ({ path: "/admin" })
+  },
+  {
     path: "/login",
     name: "登录",
     component: () => import("@/view/login.vue"),
@@ -59,7 +63,7 @@ const routes: RouteRecordRaw[] = [
           {
             path: "list",
             name: "博客列表",
-            component: () => import("@/view/article/article.vue")
+            component: () => import("@/view/article/list.vue")
           }
         ]
       },
@@ -93,7 +97,7 @@ const routes: RouteRecordRaw[] = [
           {
             path: "tag",
             name: "标签管理",
-            component: () => import("@/view/operation/tag.vue")
+            component: () => import("@/view/operation/tag/tag.vue")
           },
           {
             path: "recommend",
@@ -103,12 +107,12 @@ const routes: RouteRecordRaw[] = [
           {
             path: "category",
             name: "分类管理",
-            component: () => import("@/view/operation/category.vue")
+            component: () => import("@/view/operation/category/category.vue")
           },
           {
             path: "link",
             name: "友链管理",
-            component: () => import("@/view/operation/link.vue")
+            component: () => import("@/view/operation/link/link.vue")
           },
 
         ]

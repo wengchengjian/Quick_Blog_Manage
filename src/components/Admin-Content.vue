@@ -1,7 +1,4 @@
 <template>
-  <!-- <keep-alive :include="pages">
-    <router-view></router-view>
-  </keep-alive> -->
   <router-view v-slot="{ Component }">
     <keep-alive :include="pages">
       <component :is="Component" />

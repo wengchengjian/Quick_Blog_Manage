@@ -26,10 +26,16 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 3000,
     proxy: {
+      //接口拦截器
       '^/api/.*': {
         target: "http://localhost:8080/quick_blog/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      //资源拦截器
+      '^/resource/.*': {
+        target: "http://localhost:8080/quick_blog/",
+        changeOrigin: true,
       }
     },
     hmr: {

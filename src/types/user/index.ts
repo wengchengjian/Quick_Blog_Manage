@@ -1,5 +1,5 @@
 import { Role } from "@/types/role"
-import { BaseResponse } from "@/types/BaseResponse";
+import { BaseResponse, BasePageResponse } from "@/types/BaseResponse";
 
 export interface Authority {
   authority: string;
@@ -15,15 +15,12 @@ export interface UserLoginRequest {
   password: string;
 }
 
-export interface UserLoginResponse extends BaseResponse {
-  data: string;
-}
+export type UserLoginResponse = BaseResponse<string>
 
 export interface UserInfoRequest {
 
 }
-export interface UserInfoResponse extends BaseResponse {
-  data: User;
+export interface UserInfoResponse extends BaseResponse<User> {
 }
 
 export interface UserListPageRequest {
@@ -32,27 +29,19 @@ export interface UserListPageRequest {
   userName?: number;
 }
 
-export interface UserListPageResponse extends BaseResponse {
-  data: {
-    totalCount: number;
-    pageSize: number;
-    totalPage: number;
-    currentPage: number;
-    list: User[];
-  }
-}
+
+
+export type UserListPageResponse = BasePageResponse<User>
 
 export interface UserUpdatePasswordRequest {
   oldPassword: string;
   newPassword: string;
 }
 
-export interface UserUpdatePasswordResponse extends BaseResponse {
-  data: null;
-}
+export type UserUpdatePasswordResponse = BaseResponse<null>
 
 export type User = {
-  userId: number;
+  id: number;
   username: string;
   application: string;
   email: string;

@@ -27,9 +27,10 @@
   </div>
   <div class="admin-tags">
     <el-tabs
+      v-model="selectRoute"
       @tab-click="handleClickTag"
       @tab-remove="handleRemoveTag"
-      v-model="selectTag"
+      type="card"
     >
       <el-tab-pane
         v-for="item in selectTags"
@@ -45,8 +46,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus';
+import { defineComponent, PropType, ref, watchEffect } from 'vue';
+import { ElBreadcrumb, ElBreadcrumbItem, ElTabs } from 'element-plus';
 import { RouteRecordRaw, useRouter } from 'vue-router';
 import { User, Crop, TopRight } from '@element-plus/icons-vue';
 import { logout } from '@/api/user';
@@ -65,16 +66,18 @@ export default defineComponent({
       type: Array as PropType<String[]>,
       required: true,
     },
-    selectTag: {
-      type: String,
-      required: true,
-    },
   },
   setup(props, { emit }) {
     const router = useRouter();
 
-    const handleClickTag = (tab: string) => {
-      emit('tab-click', tab);
+    const selectRoute = ref<string>('');
+
+    watchEffect(() => {
+      selectRoute.value = router.currentRoute.value.name as string;
+    });
+
+    const handleClickTag = (tab: any) => {
+      emit('tab-click', tab.paneName);
     };
     const handleRemoveTag = (tab: string) => {
       emit('tab-remove', tab);
@@ -103,6 +106,7 @@ export default defineComponent({
       handleCommand,
       handleClickTag,
       handleRemoveTag,
+      selectRoute,
     };
   },
 });

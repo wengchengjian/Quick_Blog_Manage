@@ -6,7 +6,7 @@ export const getToken = async (username: string, password: string) => await requ
 })
 
 export const login = async (username: string, password: string) => {
-  const { data } = await getToken(username, password);
+  const  data  = await getToken(username, password);
   const token = data;
   //设置请求头
   request.setAuth(token);

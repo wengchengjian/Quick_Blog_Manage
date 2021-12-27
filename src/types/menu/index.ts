@@ -1,7 +1,7 @@
 import { BaseResponse } from "@/types/BaseResponse";
 
 export interface Menu {
-  menuId: number;
+  id: number;
   parentId: number;
   name: string;
   url: string;
@@ -17,6 +17,7 @@ export interface MenuNavListRequest {
 
 }
 
-export interface MenuNavListResponse extends BaseResponse {
-  data: Menu[]
+export type MenuNavListResponseData = Menu[];
+
+export interface MenuNavListResponse extends BaseResponse<MenuNavListResponseData> {
 }

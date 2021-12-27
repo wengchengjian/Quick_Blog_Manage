@@ -1,5 +1,4 @@
 <template>
-  operation
   <router-view></router-view>
 </template>
 
@@ -7,7 +6,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name:"Operation",
+  name: 'Operation',
 
   setup() {},
 });

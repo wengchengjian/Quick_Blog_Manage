@@ -36,14 +36,14 @@ export default defineComponent({
   components: {
     AdminSubMenu,
   },
-  setup(props, { emit }) {
+  setup({ dataSource }, { emit }) {
     const activeIndex = ref('');
     const isCollapse = ref(false);
     const router = useRouter();
 
     watchEffect(() => {
       const route = router.currentRoute.value;
-      emit('select', route.matched,route.path);
+      emit('select', route.matched, route.path);
     });
 
     const handleCollapse = () => {
@@ -51,12 +51,13 @@ export default defineComponent({
     };
     const handleSelect = (index: string, indexPath: string[]) => {
       const path = indexPath.join('');
+      // 因为collapse也是由菜单实现,但它并没有index-url,也不需要这个东西，所以需要特殊处理一下
+      if (!path) {
+        return;
+      }
       //拼接跳转路径
       const to = `/admin${path}`;
       router.push({ path: to });
-
-      // console.log('to: ', to);
-      console.log('router: ', router.currentRoute.value);
     };
     return {
       activeIndex,

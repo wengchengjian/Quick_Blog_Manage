@@ -1,5 +1,5 @@
 export type Role = {
-  roleId: number;
+  id: number;
   roleName: string;
   remark: string;
   createUserId: number;
